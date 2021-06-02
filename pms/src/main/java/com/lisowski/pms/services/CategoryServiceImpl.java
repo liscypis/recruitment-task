@@ -2,26 +2,29 @@ package com.lisowski.pms.services;
 
 import com.lisowski.pms.dto.CategoryResponseDTO;
 import com.lisowski.pms.entity.Category;
+import com.lisowski.pms.entity.Product;
 import com.lisowski.pms.payload.CategoryRequestDTO;
 import com.lisowski.pms.repository.CategoryRepository;
+import com.lisowski.pms.repository.ProductRepository;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class CategoryServiceImpl implements CategoryService{
 
-    private CategoryRepository categoryRepository;
-    private ModelMapper modelMapper;
 
-    public CategoryServiceImpl(CategoryRepository cr, ModelMapper mm) {
-        this.categoryRepository = cr;
-        this.modelMapper = mm;
-    }
+    private final CategoryRepository categoryRepository;
+    private final ProductRepository productRepository;
+    private final ModelMapper modelMapper;
+
 
     @Override
     public CategoryResponseDTO createCategory(CategoryRequestDTO request) {
@@ -37,12 +40,22 @@ public class CategoryServiceImpl implements CategoryService{
     public void deleteCategory(String id) {
         Category category = categoryRepository.findById(id).orElseThrow(() -> new ResponseStatusException(
                 HttpStatus.BAD_REQUEST, "Invalid id"));
+
+        deleteCategoryFromProducts(category);
+
         categoryRepository.delete(category);
     }
+
+
 
     @Override
     public void deleteAll() {
         categoryRepository.deleteAll();
+        List<Product> productList = productRepository.findAll();
+        for (Product p: productList){
+            p.setCategory(null);
+            productRepository.save(p);
+        }
     }
 
     @Override
@@ -59,7 +72,7 @@ public class CategoryServiceImpl implements CategoryService{
     public List<CategoryResponseDTO> getCategories() {
         return categoryRepository.findAll()
                 .stream()
-                .map(user -> modelMapper.map(user, CategoryResponseDTO.class))
+                .map(cat -> modelMapper.map(cat, CategoryResponseDTO.class))
                 .collect(Collectors.toList());
     }
 
@@ -74,5 +87,15 @@ public class CategoryServiceImpl implements CategoryService{
         if(categoryRepository.findCategoryByName(request.getName()).isPresent())
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, "The name is already in use.");
+    }
+
+    private void deleteCategoryFromProducts(Category category) {
+        List<Product> productList = productRepository.findByCategory(category);
+        if(!productList.isEmpty()){
+            for (Product p : productList){
+                p.setCategory(null);
+                productRepository.save(p);
+            }
+        }
     }
 }

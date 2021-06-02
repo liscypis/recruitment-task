@@ -2,6 +2,7 @@ package com.lisowski.pms.api;
 
 import com.lisowski.pms.payload.CategoryRequestDTO;
 import com.lisowski.pms.services.CategoryServiceImpl;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -14,13 +15,11 @@ import java.util.Map;
 
 
 @RestController
+@RequiredArgsConstructor
 public class CategoryController {
 
-    private CategoryServiceImpl categoryService;
+    private final CategoryServiceImpl categoryService;
 
-    public CategoryController(CategoryServiceImpl cs) {
-        this.categoryService = cs;
-    }
 
     @GetMapping ("/category/{id}")
     public ResponseEntity<?> getCategory(@PathVariable("id") String id) {
@@ -54,21 +53,6 @@ public class CategoryController {
     public ResponseEntity<?> deleteAllCategories() {
         categoryService.deleteAll();
         return ResponseEntity.ok().build();
-    }
-
-
-
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public Map<String, String> handleValidationExceptions(
-            MethodArgumentNotValidException ex) {
-        Map<String, String> errors = new HashMap<>();
-        ex.getBindingResult().getAllErrors().forEach((error) -> {
-            String fieldName = ((FieldError) error).getField();
-            String errorMessage = error.getDefaultMessage();
-            errors.put(fieldName, errorMessage);
-        });
-        return errors;
     }
 
 }
