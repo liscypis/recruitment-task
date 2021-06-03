@@ -1,4 +1,4 @@
-package com.lisowski.pms;
+package com.lisowski.pms.utils;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

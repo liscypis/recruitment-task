@@ -1,9 +1,8 @@
 package com.lisowski.pms.dto;
 
-import com.lisowski.pms.entity.Category;
+
 import lombok.Data;
-import lombok.Getter;
-import org.springframework.data.annotation.Id;
+
 
 @Data
 public class ProductResponseDTO {
