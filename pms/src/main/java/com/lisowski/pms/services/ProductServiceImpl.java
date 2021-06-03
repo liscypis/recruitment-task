@@ -57,12 +57,19 @@ public class ProductServiceImpl implements ProductService {
                 HttpStatus.BAD_REQUEST, "Invalid productId"));
         Category category = categoryRepository.findById(categoryId).orElseThrow(() -> new ResponseStatusException(
                 HttpStatus.BAD_REQUEST, "Invalid categoryId"));
-        modelMapper.map(requestDTO, product);
+        productRepository.findByProductName(requestDTO.getProductName())
+                .ifPresent(p -> {
+                    if (!p.equals(product))
+                        throw new ResponseStatusException(
+                                HttpStatus.BAD_REQUEST, "Product name is taken");
+                });
 
-        product.setCategory(category);
-        product.updateGrossPrice();
-        System.out.println(product);
-        productRepository.save(product);
+            modelMapper.map(requestDTO, product);
+
+            product.setCategory(category);
+            product.updateGrossPrice();
+            System.out.println(product);
+            productRepository.save(product);
     }
 
     @Override
