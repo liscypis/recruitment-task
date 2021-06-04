@@ -1,4 +1,4 @@
-package com.lisowski.pms.services;
+package com.lisowski.pms.services.servicesImpl;
 
 import com.lisowski.pms.dto.ProductResponseDTO;
 import com.lisowski.pms.entity.Category;
@@ -6,6 +6,7 @@ import com.lisowski.pms.entity.Product;
 import com.lisowski.pms.payload.ProductRequestDTO;
 import com.lisowski.pms.repository.CategoryRepository;
 import com.lisowski.pms.repository.ProductRepository;
+import com.lisowski.pms.services.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;

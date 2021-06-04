@@ -1,7 +1,7 @@
 package com.lisowski.pms.security;
 
 
-import com.lisowski.pms.services.MyUserDetailsService;
+import com.lisowski.pms.services.servicesImpl.MyUserDetailsService;
 import com.lisowski.pms.utils.JwtAuthenticationEntryPoint;
 import com.lisowski.pms.utils.JwtRequestFilter;
 import lombok.RequiredArgsConstructor;

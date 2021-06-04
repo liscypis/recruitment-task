@@ -1,4 +1,4 @@
-package com.lisowski.pms.services;
+package com.lisowski.pms.services.servicesImpl;
 
 import com.lisowski.pms.dto.CategoryResponseDTO;
 import com.lisowski.pms.entity.Category;
@@ -6,6 +6,7 @@ import com.lisowski.pms.entity.Product;
 import com.lisowski.pms.payload.CategoryRequestDTO;
 import com.lisowski.pms.repository.CategoryRepository;
 import com.lisowski.pms.repository.ProductRepository;
+import com.lisowski.pms.services.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
@@ -18,7 +19,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class CategoryServiceImpl implements CategoryService{
+public class CategoryServiceImpl implements CategoryService {
 
 
     private final CategoryRepository categoryRepository;

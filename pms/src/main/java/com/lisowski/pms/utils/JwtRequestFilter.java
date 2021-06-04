@@ -1,7 +1,7 @@
 package com.lisowski.pms.utils;
 
 import com.lisowski.pms.security.MyUserDetails;
-import com.lisowski.pms.services.MyUserDetailsService;
+import com.lisowski.pms.services.servicesImpl.MyUserDetailsService;
 import io.jsonwebtoken.JwtException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

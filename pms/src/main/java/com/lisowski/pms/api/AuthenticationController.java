@@ -3,7 +3,7 @@ package com.lisowski.pms.api;
 
 import com.lisowski.pms.payload.LoginRequestDTO;
 import com.lisowski.pms.payload.UserRequestDTO;
-import com.lisowski.pms.services.AuthenticationServiceImpl;
+import com.lisowski.pms.services.servicesImpl.AuthenticationServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

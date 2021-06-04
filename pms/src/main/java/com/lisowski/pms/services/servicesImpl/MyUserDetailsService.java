@@ -1,4 +1,4 @@
-package com.lisowski.pms.services;
+package com.lisowski.pms.services.servicesImpl;
 
 import com.lisowski.pms.entity.User;
 import com.lisowski.pms.repository.UserRepository;

@@ -1,17 +1,12 @@
 package com.lisowski.pms.api;
 
 import com.lisowski.pms.payload.CategoryRequestDTO;
-import com.lisowski.pms.services.CategoryServiceImpl;
+import com.lisowski.pms.services.servicesImpl.CategoryServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashMap;
-import java.util.Map;
 
 
 @RestController

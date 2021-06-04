@@ -1,7 +1,7 @@
 package com.lisowski.pms.api;
 
 import com.lisowski.pms.payload.ProductRequestDTO;
-import com.lisowski.pms.services.ProductServiceImpl;
+import com.lisowski.pms.services.servicesImpl.ProductServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

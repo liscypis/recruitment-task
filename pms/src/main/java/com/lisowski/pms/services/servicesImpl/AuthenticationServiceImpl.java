@@ -1,4 +1,4 @@
-package com.lisowski.pms.services;
+package com.lisowski.pms.services.servicesImpl;
 
 import com.lisowski.pms.dto.LoginResponseDTO;
 import com.lisowski.pms.entity.ERole;
@@ -7,6 +7,7 @@ import com.lisowski.pms.payload.LoginRequestDTO;
 import com.lisowski.pms.payload.UserRequestDTO;
 import com.lisowski.pms.repository.UserRepository;
 import com.lisowski.pms.security.MyUserDetails;
+import com.lisowski.pms.services.AuthenticationService;
 import com.lisowski.pms.utils.JwtUtils;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -68,7 +69,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         }
     }
 
-    private void checkPhoneNumber(String phoneNumber) {
+    public static void checkPhoneNumber(String phoneNumber) {
         if (!phoneNumber.matches("[0-9]+"))
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, "invalid phone number");

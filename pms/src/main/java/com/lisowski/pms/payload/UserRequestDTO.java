@@ -20,7 +20,7 @@ public class UserRequestDTO {
     private String email;
     @NotBlank(message = "phoneNumber is required")
 
-    @Size(max = 9, min = 9)
+    @Size(max = 9, min = 9, message = "the number must be 9 characters long")
     private String phoneNumber;
     @NotNull(message = "role is required")
     private ERole role;
