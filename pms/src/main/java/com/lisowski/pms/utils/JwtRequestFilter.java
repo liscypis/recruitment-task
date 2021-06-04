@@ -2,15 +2,16 @@ package com.lisowski.pms.utils;
 
 import com.lisowski.pms.security.MyUserDetails;
 import com.lisowski.pms.services.MyUserDetailsService;
+import io.jsonwebtoken.JwtException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,10 +32,18 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         String jwt = null;
         String authHeader = httpServletRequest.getHeader("Authorization");
 
-        if(authHeader != null && authHeader.startsWith("Bearer ")) {
-            jwt = authHeader.substring(7);
-            username = jwtUtils.extractUsername(jwt);
+        try {
+            if(authHeader != null && authHeader.startsWith("Bearer ")) {
+                jwt = authHeader.substring(7);
+                username = jwtUtils.extractUsername(jwt);
+            }
+        } catch (JwtException e) {
+            httpServletRequest.setAttribute("exception", e);
+            httpServletResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+            RequestDispatcher dispatcher = httpServletRequest.getRequestDispatcher("expired-jwt");
+            dispatcher.forward(httpServletRequest, httpServletResponse);
         }
+
         if(username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             MyUserDetails userDetails = (MyUserDetails) userDetailsService.loadUserByUsername(username);
             UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(
