@@ -62,8 +62,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     private void checkRole(UserRequestDTO request) {
-        if (!request.getRole().name().equals(ERole.ROLE_ADMIN.name())
-                && !request.getRole().name().equals(ERole.ROLE_USER.name())) {
+        if (!request.getRole().name().equals(ERole.ROLE_USER.name())) {
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, "invalid role");
         }
