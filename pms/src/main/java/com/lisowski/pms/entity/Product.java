@@ -1,5 +1,6 @@
 package com.lisowski.pms.entity;
 
+import com.lisowski.pms.utils.Utils;
 import lombok.Data;
 import lombok.Getter;
 import org.springframework.data.annotation.Id;
@@ -22,7 +23,10 @@ public class Product {
     public void updateGrossPrice() {
         if (this.vat == 0)
             this.grossPrice = this.netPrice;
-        else
+        else{
             this.grossPrice = this.netPrice + this.netPrice * this.vat / 100;
+            this.grossPrice = Utils.round(this.grossPrice, 2);
+        }
+
     }
 }
