@@ -1,0 +1,26 @@
+<mat-toolbar color="primary">
+    <span>Products Management System</span>
+    <span class="menu-spacer"></span>
+    <div *ngIf="isLoggedIn">
+        <a *ngIf="user" mat-button [routerLink]="'/products'"> Produkty </a>
+        <a *ngIf="user" mat-button> Kontakt </a>
+        <button *ngIf="admin" mat-button [matMenuTriggerFor]="menu">Produkty</button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item [routerLink]="'/editProducts'">Edytuj produkty </button>
+            <button mat-menu-item [routerLink]="'/addProduct'">Dodaj produkt </button>
+        </mat-menu>
+        <button *ngIf="admin" mat-button [matMenuTriggerFor]="menucat">Kategorie</button>
+        <mat-menu #menucat="matMenu">
+            <button mat-menu-item  [routerLink]="'/editCategory'">Edytuj kategorie </button>
+            <button mat-menu-item  [routerLink]="'/addCategory'">Dodaj kategorie </button>
+        </mat-menu>
+        <a *ngIf="admin" mat-button [routerLink]="'/editUsers'" > Użytkownicy </a>
+        <a *ngIf="admin" mat-button> Wiadomości </a>
+    </div>
+
+    <span class="example-spacer"></span>
+    <a mat-button>{{ username }}</a>
+    <a *ngIf="user" mat-button [routerLink]="'/editUser'"> Edycja danych </a>
+    <a *ngIf="isLoggedIn" mat-button [routerLink]="'/logout'"> Wyloguj </a>
+    <a *ngIf="!isLoggedIn" mat-button [routerLink]="'/login'"> Zaloguj </a>
+</mat-toolbar>

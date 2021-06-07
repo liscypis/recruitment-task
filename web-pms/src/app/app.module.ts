@@ -13,12 +13,31 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatInputModule } from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import { ToolbarComponent } from './toolbar/toolbar.component';
+import { ProductsComponent } from './products/products.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { LogoutComponent } from './logout/logout.component';
+import { EditProductsComponent } from './products/edit-products/edit-products.component';
+import { AddProductsComponent } from './products/add-products/add-products.component';
+import { AddCategoryComponent } from './category/add-category/add-category.component';
+import { EditCategoryComponent } from './category/edit-category/edit-category.component';
+import { EditUserDataComponent } from './user/edit-user-data/edit-user-data.component';
+import { EditUsersDataComponent } from './user/edit-users-data/edit-users-data.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ToolbarComponent,
+    ProductsComponent,
+    LogoutComponent,
+    EditProductsComponent,
+    AddProductsComponent,
+    AddCategoryComponent,
+    EditCategoryComponent,
+    EditUserDataComponent,
+    EditUsersDataComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +50,8 @@ import {MatButtonModule} from '@angular/material/button';
     MatFormFieldModule,
     MatToolbarModule,
     MatInputModule,
-    MatButtonModule
+    MatButtonModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
