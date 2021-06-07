@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserData } from '../models/UserData';
@@ -12,8 +12,11 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  // initRide(request: UserData): Observable<any> {
-  //   console.log(request)
-  //   return this.http.post(API_URL + 'initialOrderRideByDispatcher', request);
-  // }
+  getUser(userId: string): Observable<any> {
+    return this.http.get(API_URL + 'user/' + userId);
+  }
+
+  updateUser(user: UserData, id: string): Observable<any> {
+    return this.http.put(API_URL + 'user', user, { params: { userid: id } })
+  }
 }

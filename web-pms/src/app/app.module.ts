@@ -23,6 +23,8 @@ import { AddCategoryComponent } from './category/add-category/add-category.compo
 import { EditCategoryComponent } from './category/edit-category/edit-category.component';
 import { EditUserDataComponent } from './user/edit-user-data/edit-user-data.component';
 import { EditUsersDataComponent } from './user/edit-users-data/edit-users-data.component';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { authInterceptorProviders } from './services/interceptor.service';
 
 @NgModule({
   declarations: [
@@ -51,9 +53,10 @@ import { EditUsersDataComponent } from './user/edit-users-data/edit-users-data.c
     MatToolbarModule,
     MatInputModule,
     MatButtonModule,
-    MatMenuModule
+    MatMenuModule,
+    MatGridListModule
   ],
-  providers: [],
+  providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
