@@ -1,1 +1,32 @@
-<p>register works!</p>
+<mat-card class="example-card">
+    <mat-card-content>
+        <h2>Rejestracja</h2>
+        <form [formGroup]="registerForm" (ngSubmit)="registerUser()" #formDirective="ngForm" >
+            <mat-form-field appearance="outline">
+                <mat-label>Login</mat-label>
+                <input matInput placeholder="Login" formControlName="username">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Hasło</mat-label>
+                <input matInput placeholder="Hasło" formControlName="password" type="password">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Powtórz hasło</mat-label>
+                <input matInput placeholder="Powtórz hasło" formControlName="password2" type="password">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput placeholder="Email" formControlName="email">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Numer telefonu</mat-label>
+                <input matInput placeholder="Numer telefonu" formControlName="phoneNumber">
+            </mat-form-field>
+            
+
+            <button type="submit" mat-raised-button color="primary"
+                [disabled]="!registerForm.valid ">Zarejestruj</button>
+        </form>
+          <a *ngIf="errorMessage" class="alert-danger"> {{errorMessage}} </a>
+    </mat-card-content>
+  </mat-card>

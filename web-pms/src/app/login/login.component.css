@@ -7,3 +7,13 @@ mat-card {
   mat-form-field {
     display: block;
   }
+
+  .alert-danger {
+    color: #f44336; /* Red */
+    font-weight: bold;
+}
+.register {
+  font-weight: bold;
+  text-decoration: none;
+}
+

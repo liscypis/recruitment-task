@@ -7,6 +7,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { AddProductsComponent } from './products/add-products/add-products.component';
 import { EditProductsComponent } from './products/edit-products/edit-products.component';
 import { ProductsComponent } from './products/products.component';
+import { RegisterComponent } from './register/register.component';
 import { EditUserDataComponent } from './user/edit-user-data/edit-user-data.component';
 import { EditUsersDataComponent } from './user/edit-users-data/edit-users-data.component';
 
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'addCategory', component:AddCategoryComponent},
   {path: 'editUser', component:EditUserDataComponent},
   {path: 'editUsers', component:EditUsersDataComponent},
+  {path: 'register', component:RegisterComponent},
 
   {path: '', redirectTo: '/login', pathMatch: 'full'}
 ];
