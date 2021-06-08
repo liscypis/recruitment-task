@@ -1,38 +1,38 @@
-<mat-card >
-    <mat-card-header class="header">
+<mat-card>
+    <mat-card-header>
         <mat-card-title>Lista produktów</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-       
-<cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
-    <table mat-table [dataSource]="dataSource" matSort  class="mat-elevation-z8">
 
-        <ng-container matColumnDef="productName">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Nazwa produktu </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.productName}} </mat-cell>
-        </ng-container>
+        <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+            <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
-        <ng-container matColumnDef="netPrice">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Cena netto </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.netPrice}} </mat-cell>
-        </ng-container>
+                <ng-container matColumnDef="productName">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Nazwa produktu </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.productName}} </mat-cell>
+                </ng-container>
 
-        <ng-container matColumnDef="grossPrice">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Cena brutto </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.grossPrice}} </mat-cell>
-        </ng-container>
+                <ng-container matColumnDef="netPrice">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Cena netto </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.netPrice}} </mat-cell>
+                </ng-container>
 
-        <ng-container matColumnDef="description">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Opis produktu </mat-header-cell>
-            <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
-        </ng-container>
+                <ng-container matColumnDef="grossPrice">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Cena brutto </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.grossPrice}} </mat-cell>
+                </ng-container>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;" >
-        </mat-row>
-    </table>
-</cdk-virtual-scroll-viewport>
-       
+                <ng-container matColumnDef="description">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Opis produktu </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;">
+                </mat-row>
+            </table>
+        </cdk-virtual-scroll-viewport>
+
     </mat-card-content>
 
 </mat-card>

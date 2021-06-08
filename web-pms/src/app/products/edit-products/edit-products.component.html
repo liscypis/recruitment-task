@@ -1,1 +1,165 @@
-<p>edit-products works!</p>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Lista produktów</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+        <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+            <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+                <ng-container matColumnDef="id">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> id </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="available">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Dostępny </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.available}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="productName">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Nazwa produktu </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.productName}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="netPrice">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Cena netto </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.netPrice}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="grossPrice">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Cena brutto </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.grossPrice}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="vat">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Vat % </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.vat}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="category">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Kategoria</mat-header-cell>
+                    <mat-cell *matCellDef="let element">
+                        <ng-container *ngIf="element.category; else defaultValue">
+                            {{element.category.name}}
+                        </ng-container>
+                        <ng-template #defaultValue>
+                            NULL
+                        </ng-template>
+                    </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="description">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Opis produktu </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="edit">
+                    <mat-header-cell *matHeaderCellDef>Akcja </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                        <button mat-icon-button matTooltip="Click to Edit" (click)="onEditRowClicked(row)"
+                            class="iconbutton" color="primary">
+                            <mat-icon aria-label="Edit">edit</mat-icon>
+                        </button>
+                        <button mat-icon-button matTooltip="Click to Delete" (click)="onDeleteRowClicked(row)"
+                            class="iconbutton" color="warn">
+                            <mat-icon aria-label="Delete">delete</mat-icon>
+                        </button>
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;">
+                </mat-row>
+            </table>
+        </cdk-virtual-scroll-viewport>
+
+
+        <h3>Edycja danych</h3>
+        <mat-grid-list cols="4" rowHeight="150px">
+            <mat-grid-tile>
+                <div class="container">
+
+                    <section class="body">
+                        <form [formGroup]="updateProductForm" (ngSubmit)="updateProduct()" #formDirective="ngForm">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Nazwa produktu</mat-label>
+                                <input matInput placeholder="Nazwa produktu" formControlName="name">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Cena netto</mat-label>
+                                <input matInput placeholder="Cena netto" formControlName="netPrice">
+                            </mat-form-field>
+
+                        </form>
+
+                    </section>
+                </div>
+
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <div class="container">
+                    <section class="header">
+
+                    </section>
+                    <section class="body">
+                        <form [formGroup]="updateProductForm" (ngSubmit)="updateProduct()" #formDirective="ngForm">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Vat</mat-label>
+                                <input matInput placeholder="Vat" formControlName="vat">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Opis</mat-label>
+                                <input matInput placeholder="Opis" formControlName="description">
+                            </mat-form-field>
+                        </form>
+
+                    </section>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <div class="container">
+                    <section class="body">
+
+                        <form [formGroup]="updateProductForm" (ngSubmit)="updateProduct()" #formDirective="ngForm">
+
+                            <mat-form-field appearance="outline">
+                                <mat-label>Kategoria</mat-label>
+                                <mat-select formControlName="cat" placeholder="Kategoria" [value]="selectedCategory"
+                                    (selectionChange)="changeCategory($event.value)">
+                                    <mat-option *ngFor="let category of categories" [value]="category.id">
+                                        {{category.name}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline">
+                                <mat-label>Dostępny</mat-label>
+                                <mat-select formControlName="ava" placeholder="Dostępny" [value]="selectedAvailable"
+                                    (selectionChange)="changeAvailable($event.value)">
+                                    <mat-option value="0">False</mat-option>
+                                    <mat-option value="1">True</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </form>
+                    </section>
+                </div>
+
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <div class="container">
+                    <section class="body">
+                        <form [formGroup]="updateProductForm" (ngSubmit)="updateProduct()" #formDirective="ngForm">
+
+                            <button type="submit" mat-raised-button color="primary"
+                                [disabled]="!updateProductForm.valid || !selectedItem">Zapisz</button>
+                        </form>
+                        <a *ngIf="errorMessage" class="alert-danger"> {{errorMessage}} </a>
+                    </section>
+                </div>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </mat-card-content>
+
+</mat-card>

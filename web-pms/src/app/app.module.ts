@@ -28,6 +28,8 @@ import { authInterceptorProviders } from './services/interceptor.service';
 import {MatTableModule} from '@angular/material/table';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import { MatSortModule } from '@angular/material/sort';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,9 @@ import { MatSortModule } from '@angular/material/sort';
     MatGridListModule,
     MatTableModule,
     ScrollingModule,
-    MatSortModule
+    MatSortModule,
+    MatIconModule,
+    MatSelectModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

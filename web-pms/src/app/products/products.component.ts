@@ -16,9 +16,6 @@ export class ProductsComponent implements OnInit {
 
   @ViewChild(MatSort) sort!: MatSort;
 
-  // ngAfterViewInit() {
-    
-  // }
 
   constructor(private api: ApiService) { }
 

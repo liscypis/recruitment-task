@@ -78,6 +78,17 @@ public class PmsApplication implements CommandLineRunner {
 			product.setCategory(categoryRepository.findCategoryByName("GPU").get());
 			productRepository.save(product);
 		}
+		if(productRepository.findByProductName("HD7777").isEmpty()) {
+			Product product = new Product();
+			product.setProductName("HD7777");
+			product.setAvailable(false);
+			product.setDescription("Grafika do kopania :D");
+			product.setNetPrice(432);
+			product.setVat(6);
+			product.updateGrossPrice();
+			product.setCategory(categoryRepository.findCategoryByName("GPU").get());
+			productRepository.save(product);
+		}
 
 
 	}

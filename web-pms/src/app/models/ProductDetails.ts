@@ -2,7 +2,7 @@ import { Category } from "./Category";
 
 export class ProductDetails {
     id!: string;
-    iproductNamed!: string;
+    productName!: string;
     netPrice!: Number;
     grossPrice!: Number;
     description!: string;

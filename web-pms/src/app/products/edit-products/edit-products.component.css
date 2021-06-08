@@ -1,0 +1,62 @@
+.example-viewport {
+    height: 370px;
+    width : 100%;
+}
+
+table {
+    width: 100%;
+}
+
+mat-card {
+    max-width: 95%;
+    margin: 2em auto;
+    text-align: center;
+  }
+  .alert-danger {
+    color: #f44336; /* Red */
+    font-weight: bold;
+}
+
+  .mat-column-productName {
+    flex: 0 0 100px !important;
+    white-space: unset !important;
+    justify-content: center;
+  }
+  .mat-column-netPrice {
+    flex: 0 0 70px !important;
+    white-space: unset !important;
+    justify-content: center;
+  }
+  .mat-column-available {
+    flex: 0 0 70px !important;
+    white-space: unset !important;
+    justify-content: center;
+  }
+  .mat-column-vat {
+    flex: 0 0 50px !important;
+    white-space: unset !important;
+    justify-content: center;
+  }
+  .mat-column-grossPrice {
+    flex: 0 0 70px !important;
+    white-space: unset !important;
+    justify-content: center;
+  }
+  .mat-column-id {
+    flex: 0 0 190px !important;
+    white-space: unset !important;
+    justify-content: center;
+  }
+  .mat-column-edit {
+    flex: 0 0 70px !important;
+    white-space: unset !important;
+    justify-content: center;
+  }
+  .mat-column-description {
+    white-space: unset !important;
+    justify-content: center;
+  }
+  
+  .mat-header-row {
+    padding-left: 10px;
+  }
