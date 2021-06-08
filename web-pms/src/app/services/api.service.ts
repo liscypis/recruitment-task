@@ -44,5 +44,8 @@ export class ApiService {
   deleteProduct(id: string): Observable<any> {
     return this.http.delete(API_URL + 'product/' +id );
   }
+  addProduct(product: ProductDetails, categoryId:string) :Observable<any> {
+    return this.http.post(API_URL + 'product',product, { params: { categoryId: categoryId } })
+  }
 
 }

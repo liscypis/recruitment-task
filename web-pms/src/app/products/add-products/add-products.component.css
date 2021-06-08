@@ -1,0 +1,19 @@
+mat-card {
+    max-width: 400px;
+    margin: 2em auto;
+    text-align: center;
+  }
+  
+  mat-form-field {
+    display: block;
+  }
+
+  .alert-danger {
+    color: #f44336; /* Red */
+    font-weight: bold;
+}
+
+.alert {
+    color: #36f43f; /* Red */
+    font-weight: bold;
+}

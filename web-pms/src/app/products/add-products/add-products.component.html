@@ -1,1 +1,36 @@
-<p>add-products works!</p>
+<mat-card class="example-card">
+    <mat-card-content>
+        <h2>Dodaj produkt</h2>
+        <form [formGroup]="addProductForm" (ngSubmit)="addProduct()" #formDirective="ngForm" >
+            <mat-form-field appearance="outline">
+                <mat-label>Nazwa produktu</mat-label>
+                <input matInput placeholder="Nazwa produktu" formControlName="name">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Kategoria</mat-label>
+                <mat-select formControlName="cat" placeholder="Kategoria" [value]="selectedCategory">
+                    <mat-option *ngFor="let category of categories" [value]="category.id">
+                        {{category.name}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Cena netto</mat-label>
+                <input matInput placeholder="Cena netto" formControlName="netPrice">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Opis produktu</mat-label>
+                <textarea  matInput placeholder="Opis produktu" formControlName="description" ></textarea>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Vat</mat-label>
+                <input matInput placeholder="Vat" formControlName="vat">
+            </mat-form-field>
+            
+            <button type="submit" mat-raised-button color="primary"
+                [disabled]="!addProductForm.valid ">Zapisz</button>
+        </form>
+          <a *ngIf="errorMessage" class="alert-danger"> {{errorMessage}} </a>
+          <a *ngIf="infoMessage" class="alert"> {{infoMessage}} </a>
+    </mat-card-content>
+  </mat-card>

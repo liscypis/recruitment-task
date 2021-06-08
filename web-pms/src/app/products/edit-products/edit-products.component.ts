@@ -54,7 +54,7 @@ export class EditProductsComponent implements OnInit {
 
   }
 
-  getAllCategories(): void {
+   getAllCategories(): void {
     this.api.getCategories().subscribe(data => {
       console.log(data);
       this.categories = data;
