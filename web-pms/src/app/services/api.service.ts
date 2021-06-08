@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserData } from '../models/UserData';
+import { UserPasswordRequest } from '../models/UserPasswordRequest';
 
 const API_URL = 'http://localhost:8080/api/v1/';
 
@@ -18,5 +19,8 @@ export class ApiService {
 
   updateUser(user: UserData, id: string): Observable<any> {
     return this.http.put(API_URL + 'user', user, { params: { userid: id } })
+  }
+  updateUserPassword(pass: UserPasswordRequest): Observable<any> {
+    return this.http.patch(API_URL + 'user', pass)
   }
 }

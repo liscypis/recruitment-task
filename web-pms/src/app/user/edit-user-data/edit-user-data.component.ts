@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserData } from 'src/app/models/UserData';
+import { UserPasswordRequest } from 'src/app/models/UserPasswordRequest';
 import { ApiService } from 'src/app/services/api.service';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 
@@ -11,7 +12,10 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
 })
 export class EditUserDataComponent implements OnInit {
 
-  errorMessage!: string;
+  updateMessage!: string;
+  editPassMessage!: string;
+  successPassword!: string;
+  successUser!: string;
 
   updateForm = new FormGroup({
     username: new FormControl('', [Validators.minLength(4), Validators.required]),
@@ -50,7 +54,8 @@ export class EditUserDataComponent implements OnInit {
 
 
   updateUser(): void {
-    this.errorMessage = '';
+    this.updateMessage = "";
+    this.successUser = "";
     let userData = new UserData();
     userData.email = this.updateForm.value.email;
     userData.password = this.updateForm.value.password;
@@ -59,7 +64,7 @@ export class EditUserDataComponent implements OnInit {
     userData.role = "ROLE_USER";
 
     this.api.updateUser(userData, this.storage.getUserDetails().id).subscribe(() => {
-      console.log("zaktualizowano")
+      this.successUser = "Zapisano";
     },
       err => {
         console.log(err.error.message);
@@ -68,19 +73,35 @@ export class EditUserDataComponent implements OnInit {
   }
 
   updatePasswordUser(): void {
+    let newPass = new UserPasswordRequest();
+    newPass.oldPassword = this.updatePassForm.value.pass;
+    newPass.newPassword = this.updatePassForm.value.pass2;
+    newPass.id = this.storage.getUserDetails().id;
+
+    this.successPassword = "";
+    this.editPassMessage = "";
+    this.api.updateUserPassword(newPass)
+    .subscribe(()=>{
+      this.successPassword = "Zapisano"
+    },
+    err =>{
+      console.log(err);
+      if(err.error.message == "Password not matches")
+      this.editPassMessage = "Obecne hasło nieprawidłowe"
+    })
 
   }
 
 
   checkError(msg: string): void {
     if (msg == "Password not matches")
-      this.errorMessage = "Błędne hasło";
+      this.updateMessage = "Błędne hasło";
     if (msg == "Username is taken")
-      this.errorMessage = "Login jest zajęty";
+      this.updateMessage = "Login jest zajęty";
     if (msg == "Email is taken")
-      this.errorMessage = "Email jest zajęty";
+      this.updateMessage = "Email jest zajęty";
       if (msg == "phone number is taken")
-      this.errorMessage = "Numer telefonu jest zajęty";
+      this.updateMessage = "Numer telefonu jest zajęty";
   }
   
 

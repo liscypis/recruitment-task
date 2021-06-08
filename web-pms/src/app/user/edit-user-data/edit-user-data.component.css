@@ -12,6 +12,10 @@ mat-card {
     color: #f44336; /* Red */
     font-weight: bold;
 }
+.alert {
+  color: #56f436; /* Red */
+  font-weight: bold;
+}
 
 .container {
     display: flex;
