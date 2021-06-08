@@ -59,5 +59,8 @@ export class ApiService {
   deleteCategory(categoryId:string) :Observable<any> {
     return this.http.delete(API_URL + 'category/' + categoryId);
   }
+  getUsers():Observable<any> {
+    return this.http.get(API_URL + 'users');
+  }
 
 }

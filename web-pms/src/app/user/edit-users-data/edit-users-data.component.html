@@ -1,1 +1,137 @@
-<p>edit-users-data works!</p>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Lista użytkowników</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+        <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+            <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+                <ng-container matColumnDef="id">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> id </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="username">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Login </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.username}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="email">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="phoneNumber">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Numer telefonu </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.phoneNumber}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="role">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header> Rola </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.role}} </mat-cell>
+                </ng-container>
+
+
+                <ng-container matColumnDef="edit">
+                    <mat-header-cell *matHeaderCellDef>Akcja </mat-header-cell>
+                    <mat-cell *matCellDef="let row">
+                        <button mat-icon-button matTooltip="Click to Edit" (click)="onEditRowClicked(row)"
+                            class="iconbutton" color="primary">
+                            <mat-icon aria-label="Edit">edit</mat-icon>
+                        </button>
+                        <button mat-icon-button matTooltip="Click to Delete" (click)="onDeleteRowClicked(row)"
+                            class="iconbutton" color="warn">
+                            <mat-icon aria-label="Delete">delete</mat-icon>
+                        </button>
+                    </mat-cell>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;">
+                </mat-row>
+            </table>
+        </cdk-virtual-scroll-viewport>
+
+        <mat-grid-list cols="3" rowHeight="210px">
+            <mat-grid-tile>
+
+
+                <div class="container">
+                    <section class="header">
+                        Edycja danych
+                    </section>
+                    <section class="body">
+                        <form [formGroup]="updateUserForm" (ngSubmit)="updateUser()" #formDirective="ngForm">
+                            <mat-form-field appearance="outline">
+                                <mat-label>Login</mat-label>
+                                <input matInput placeholder="Login" formControlName="username">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Email</mat-label>
+                                <input matInput placeholder="Email" formControlName="email">
+                            </mat-form-field>
+                        </form>
+                    </section>
+                </div>
+
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <div class="container">
+                    <section class="header" style="opacity: 0;">
+                            Some invisible text 
+                    </section>
+                    <section class="body">
+                        <form [formGroup]="updateUserForm" (ngSubmit)="updateUser()" #formDirective="ngForm">
+
+                            <mat-form-field appearance="outline">
+                                <mat-label>Numer telefonu</mat-label>
+                                <input matInput placeholder="Numer telefonu" formControlName="phoneNumber">
+                            </mat-form-field>
+                            <mat-form-field appearance="outline">
+                                <mat-label>Rola</mat-label>
+                                <mat-select formControlName="role" placeholder="Rola" [value]="selectedRole"
+                                    (selectionChange)="changeRole($event.value)">
+                                    <mat-option value="ROLE_ADMIN">Admin</mat-option>
+                                    <mat-option value="ROLE_USER">User</mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <button type="submit" mat-raised-button color="primary"
+                                [disabled]="!updateUserForm.valid || !selectedItem">Zapisz</button>
+                        </form>
+                        <a *ngIf="errorMessage" class="alert-danger"> {{errorMessage}} </a>
+
+                    </section>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <div class="container">
+                    <section class="header">
+                        Edycja hasła
+                    </section>
+                    <section class="body">
+
+                        <form [formGroup]="updatePasswordForm" (ngSubmit)="updatePassword()" #formDirective="ngForm">
+
+                            <mat-form-field appearance="outline">
+                                <mat-label>Hasło</mat-label>
+                                <input matInput placeholder="Hasło" formControlName="pass" type="password">
+                            </mat-form-field>
+
+                            <mat-form-field appearance="outline">
+                                <mat-label>Powtórz hasło</mat-label>
+                                <input matInput placeholder="Hasło" formControlName="pass2" type="password">
+                            </mat-form-field>
+                            <button type="submit" mat-raised-button color="primary"
+                                [disabled]="!updatePasswordForm.valid">Zapisz</button>
+                        </form>
+                        <a *ngIf="errorMessagePass" class="alert-danger"> {{errorMessagePass}} </a>
+                    </section>
+                </div>
+
+            </mat-grid-tile>
+        </mat-grid-list>
+    </mat-card-content>
+
+</mat-card>

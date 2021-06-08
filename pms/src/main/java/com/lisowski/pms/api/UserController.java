@@ -33,6 +33,12 @@ public class UserController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/users")
+    public ResponseEntity<?> getUsers() {
+        return ResponseEntity.ok(userService.getUsers());
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/user/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable("id") String id) {
         userService.deleteUser(id);
