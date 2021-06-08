@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Category } from '../models/Category';
 import { ProductDetails } from '../models/ProductDetails';
 import { UserData } from '../models/UserData';
 import { UserPasswordRequest } from '../models/UserPasswordRequest';
@@ -46,6 +47,17 @@ export class ApiService {
   }
   addProduct(product: ProductDetails, categoryId:string) :Observable<any> {
     return this.http.post(API_URL + 'product',product, { params: { categoryId: categoryId } })
+  }
+  addCategory(category: Category): Observable<any> {
+    return this.http.post(API_URL + 'category', category);
+  }
+
+  updateCategory(category: Category, categoryId: string): Observable<any> {
+    return this.http.put(API_URL + 'category', category, { params: { id: categoryId }});
+  }
+
+  deleteCategory(categoryId:string) :Observable<any> {
+    return this.http.delete(API_URL + 'category/' + categoryId);
   }
 
 }
