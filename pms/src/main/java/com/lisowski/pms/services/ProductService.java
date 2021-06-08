@@ -12,4 +12,5 @@ public interface ProductService {
     void updateProduct(ProductRequestDTO requestDTO, String productId, String categoryId);
     ProductResponseDTO getProduct(String productId);
     List<ProductResponseDTO> getProducts();
+    List<ProductResponseDTO> getAvailableProducts();
 }

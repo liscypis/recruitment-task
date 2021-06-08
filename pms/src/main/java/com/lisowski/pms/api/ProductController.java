@@ -39,10 +39,16 @@ public class ProductController {
         return ResponseEntity.ok(productService.getProduct(id));
     }
 
-    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
+    @PreAuthorize("hasRole('ADMIN') ")
     @GetMapping("/products")
     public ResponseEntity<?> getProducts() {
         return ResponseEntity.ok(productService.getProducts());
+    }
+
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping("/availableProducts")
+    public ResponseEntity<?> getAvailableProducts() {
+        return ResponseEntity.ok(productService.getAvailableProducts());
     }
 
     @PreAuthorize("hasRole('ADMIN')")

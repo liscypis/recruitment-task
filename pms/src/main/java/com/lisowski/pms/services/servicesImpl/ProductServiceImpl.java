@@ -86,4 +86,11 @@ public class ProductServiceImpl implements ProductService {
                 .map(product -> modelMapper.map(product, ProductResponseDTO.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<ProductResponseDTO> getAvailableProducts() {
+        return productRepository.findByAvailable(true).stream()
+                .map(product -> modelMapper.map(product, ProductResponseDTO.class))
+                .collect(Collectors.toList());
+    }
 }
