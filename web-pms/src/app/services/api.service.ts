@@ -23,4 +23,8 @@ export class ApiService {
   updateUserPassword(pass: UserPasswordRequest): Observable<any> {
     return this.http.patch(API_URL + 'user', pass)
   }
+
+  getAvailableProducts() :Observable<any> {
+    return this.http.get(API_URL + 'availableProducts');
+  }
 }

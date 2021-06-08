@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { ProductDetails } from '../models/ProductDetails';
+import { ApiService } from '../services/api.service';
 
 @Component({
   selector: 'app-products',
@@ -7,10 +11,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductsComponent implements OnInit {
 
+  displayedColumns: string[] = ['productName', 'netPrice', 'grossPrice', 'description'];
+  dataSource!: MatTableDataSource<ProductDetails>;
 
-  constructor() { }
+  @ViewChild(MatSort) sort!: MatSort;
+
+  // ngAfterViewInit() {
+    
+  // }
+
+  constructor(private api: ApiService) { }
 
   ngOnInit(): void {
+    this.api.getAvailableProducts().subscribe(data => {
+      this.dataSource = new MatTableDataSource(data)
+      console.log(this.dataSource);
+      this.dataSource.sort = this.sort;
+    },
+      err => {
+        console.log(err);
+      }
+    )
   }
 
 }

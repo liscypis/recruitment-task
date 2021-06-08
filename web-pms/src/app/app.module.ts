@@ -25,6 +25,9 @@ import { EditUserDataComponent } from './user/edit-user-data/edit-user-data.comp
 import { EditUsersDataComponent } from './user/edit-users-data/edit-users-data.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { authInterceptorProviders } from './services/interceptor.service';
+import {MatTableModule} from '@angular/material/table';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -54,7 +57,10 @@ import { authInterceptorProviders } from './services/interceptor.service';
     MatInputModule,
     MatButtonModule,
     MatMenuModule,
-    MatGridListModule
+    MatGridListModule,
+    MatTableModule,
+    ScrollingModule,
+    MatSortModule
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]

@@ -1,0 +1,37 @@
+.example-viewport {
+    height: 370px;
+    width : 100%;
+}
+
+table {
+    width: 100%;
+}
+
+mat-card {
+    max-width: 600px;
+    margin: 2em auto;
+    text-align: center;
+  }
+
+  .mat-column-productName {
+    flex: 0 0 100px !important;
+    white-space: unset !important;
+    justify-content: center;
+  }
+  .mat-column-netPrice {
+    flex: 0 0 70px !important;
+    white-space: unset !important;
+    justify-content: center;
+  }
+  .mat-column-grossPrice {
+    flex: 0 0 70px !important;
+    white-space: unset !important;
+    justify-content: center;
+  }
+  .mat-column-description {
+    white-space: unset !important;
+    justify-content: center;
+  }
+  .mat-header-row {
+    padding-left: 10px;
+  }
