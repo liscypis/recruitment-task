@@ -12,6 +12,7 @@ const API_URL = 'http://localhost:8080/api/v1/';
   providedIn: 'root'
 })
 export class ApiService {
+  
 
   constructor(private http: HttpClient) { }
 
@@ -22,8 +23,20 @@ export class ApiService {
   updateUser(user: UserData, id: string): Observable<any> {
     return this.http.put(API_URL + 'user', user, { params: { userid: id } })
   }
+
+  updateUserByAdmin(user: UserData): Observable<any> {
+    return this.http.put(API_URL + 'userByAdmin', user)
+  }
   updateUserPassword(pass: UserPasswordRequest): Observable<any> {
-    return this.http.patch(API_URL + 'user', pass)
+    return this.http.patch(API_URL + 'user', pass);
+  }
+  
+  updateUserPasswordByAdmin(pass: UserPasswordRequest): Observable<any> {
+    return this.http.patch(API_URL + 'userPasswordByAdmin', pass);
+  }
+
+  deleteUser(id:string): Observable<any> {
+    return this.http.delete(API_URL + 'user/' + id);
   }
 
   getAvailableProducts() :Observable<any> {

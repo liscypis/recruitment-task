@@ -4,6 +4,7 @@ import com.lisowski.pms.utils.Utils;
 import lombok.Data;
 import lombok.Getter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Data
@@ -17,6 +18,7 @@ public class Product {
     private double grossPrice;
     private String description;
     private int vat;
+    @DBRef
     private Category category;
     private boolean available;
 

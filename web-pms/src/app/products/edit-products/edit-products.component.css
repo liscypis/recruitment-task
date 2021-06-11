@@ -56,6 +56,11 @@ mat-card {
     white-space: unset !important;
     justify-content: center;
   }
+  .mat-column-category {
+    flex: 0 0 90px !important;
+    white-space: unset !important;
+    justify-content: center;
+  }
   
   .mat-header-row {
     padding-left: 10px;

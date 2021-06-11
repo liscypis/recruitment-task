@@ -20,42 +20,19 @@ mat-form-field {
     display: block;
   }
 
-  .mat-column-productName {
-    flex: 0 0 100px !important;
-    white-space: unset !important;
-    justify-content: center;
-  }
-  .mat-column-netPrice {
-    flex: 0 0 70px !important;
-    white-space: unset !important;
-    justify-content: center;
-  }
-  .mat-column-available {
-    flex: 0 0 70px !important;
-    white-space: unset !important;
-    justify-content: center;
-  }
-  .mat-column-vat {
-    flex: 0 0 50px !important;
-    white-space: unset !important;
-    justify-content: center;
-  }
-  .mat-column-grossPrice {
-    flex: 0 0 70px !important;
-    white-space: unset !important;
-    justify-content: center;
-  }
+
   .mat-column-id {
     flex: 0 0 190px !important;
     white-space: unset !important;
     justify-content: center;
   }
-  .mat-column-edit {
-    flex: 0 0 70px !important;
+  .mat-column-username {
+    flex: 0 0 150px !important;
     white-space: unset !important;
     justify-content: center;
   }
-  .mat-column-description {
+  .mat-column-edit {
+    flex: 0 0 70px !important;
     white-space: unset !important;
     justify-content: center;
   }

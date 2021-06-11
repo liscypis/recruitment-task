@@ -1,5 +1,6 @@
 package com.lisowski.pms.api;
 
+import com.lisowski.pms.payload.UserDataToChangeDTO;
 import com.lisowski.pms.payload.UserPasswordRequestDTO;
 import com.lisowski.pms.payload.UserRequestDTO;
 import com.lisowski.pms.services.servicesImpl.UserServiceImpl;
@@ -19,10 +20,17 @@ public class UserController {
 
     private final UserServiceImpl userService;
 
-    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
+    @PreAuthorize("hasRole('USER')")
     @PutMapping("/user")
     public ResponseEntity<?> editUser(@Valid @RequestBody UserRequestDTO request, @RequestParam("userid") String userid) {
         userService.editUser(request, userid);
+        return ResponseEntity.ok().build();
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @PutMapping("/userByAdmin")
+    public ResponseEntity<?> editUserByAdmin(@Valid @RequestBody UserDataToChangeDTO request) {
+        userService.editUserByAdmin(request);
         return ResponseEntity.ok().build();
     }
 
@@ -39,13 +47,20 @@ public class UserController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
+    @PatchMapping("/userPasswordByAdmin")
+    public ResponseEntity<?> editPasswordByAdmin(@Valid @RequestBody UserPasswordRequestDTO request) {
+        userService.editPasswordByAdmin(request);
+        return ResponseEntity.ok().build();
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/user/{id}")
     public ResponseEntity<?> deleteUser(@PathVariable("id") String id) {
         userService.deleteUser(id);
         return ResponseEntity.ok().build();
     }
 
-    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
+    @PreAuthorize("hasRole('USER')")
     @PatchMapping("/user")
     public ResponseEntity<?> editPassword(@Valid @RequestBody UserPasswordRequestDTO request) {
         userService.editUserPassword(request);

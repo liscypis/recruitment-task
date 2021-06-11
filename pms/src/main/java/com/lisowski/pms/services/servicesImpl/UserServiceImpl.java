@@ -2,6 +2,7 @@ package com.lisowski.pms.services.servicesImpl;
 
 import com.lisowski.pms.dto.UserResponseDTO;
 import com.lisowski.pms.entity.User;
+import com.lisowski.pms.payload.UserDataToChangeDTO;
 import com.lisowski.pms.payload.UserPasswordRequestDTO;
 import com.lisowski.pms.payload.UserRequestDTO;
 import com.lisowski.pms.repository.UserRepository;
@@ -36,6 +37,23 @@ public class UserServiceImpl implements UserService {
 
         request.setPassword(encoder.encode(request.getPassword()));
         modelMapper.map(request, user);
+
+        userRepository.save(user);
+    }
+
+    @Override
+    public void editUserByAdmin(UserDataToChangeDTO request) {
+        User user = getUserFromDB(request.getId());
+        checkRequest(modelMapper.map(request, UserRequestDTO.class), user);
+        modelMapper.map(request, user);
+        userRepository.save(user);
+    }
+
+    @Override
+    public void editPasswordByAdmin(UserPasswordRequestDTO request) {
+        User user = getUserFromDB(request.getId());
+        request.setNewPassword(encoder.encode(request.getNewPassword()));
+        user.setPassword(request.getNewPassword());
 
         userRepository.save(user);
     }
