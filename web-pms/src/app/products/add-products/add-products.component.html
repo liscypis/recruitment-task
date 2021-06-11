@@ -5,6 +5,9 @@
             <mat-form-field appearance="outline">
                 <mat-label>Nazwa produktu</mat-label>
                 <input matInput placeholder="Nazwa produktu" formControlName="name">
+                <mat-error *ngIf="nameError">
+                    {{nameError}}
+                  </mat-error>
             </mat-form-field>
             <mat-form-field appearance="outline">
                 <mat-label>Kategoria</mat-label>

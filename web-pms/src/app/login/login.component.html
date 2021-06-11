@@ -4,13 +4,13 @@
         <form class="example-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
             <mat-form-field appearance="outline">
               <mat-label>Login</mat-label>
-              <input matInput formControlName="username" [(ngModel)]="loginData.username" name="username" placeholder="Login" type="text" >
+              <input matInput formControlName="username"  placeholder="Login" type="text" >
             </mat-form-field>
-          
             <mat-form-field appearance="outline">
               <mat-label>Hasło</mat-label>
-              <input  matInput formControlName="password" [(ngModel)]="loginData.password" name="password" placeholder="Hasło" type="password">
-            </mat-form-field>
+              <input matInput placeholder="Hasło" formControlName="password" type="password">
+          </mat-form-field>
+          
             <button mat-raised-button type="submit" [disabled]="!loginForm.valid" color="primary">ZALOGUJ</button>
           </form>
           <a *ngIf="errorMessage" class="alert-danger"> Błędne dane </a>

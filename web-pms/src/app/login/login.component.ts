@@ -42,6 +42,9 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     this.errorMessage = '';
     let userDetails = new UserDetails();
+    this.loginData.username = this.loginForm.value.username;
+    this.loginData.password = this.loginForm.value.password;
+    
     this.authService.login(this.loginData).subscribe(result => {
       userDetails = result;
       this.tokenStorageService.saveJWTToken(userDetails.jwt);

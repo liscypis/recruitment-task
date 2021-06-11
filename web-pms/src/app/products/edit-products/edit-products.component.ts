@@ -24,7 +24,7 @@ export class EditProductsComponent implements OnInit {
   selectedCategory!: string;
   selectedAvailable!: boolean;
 
-  errorMessage!: string;
+  nameError!: string;
 
 
   updateProductForm = new FormGroup({
@@ -115,7 +115,8 @@ export class EditProductsComponent implements OnInit {
         err => {
           console.log(err);
           if (err.error.message == "Product name is taken")
-            this.errorMessage = "Nazwa produktu jest zajęta";
+            this.nameError = "Nazwa produktu jest zajęta";
+            this.updateProductForm.get('name')!.setErrors({ valid: false });
         })
   }
 

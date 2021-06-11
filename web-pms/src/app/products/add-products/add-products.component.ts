@@ -23,6 +23,7 @@ export class AddProductsComponent implements OnInit {
   selectedCategory!: any;
   errorMessage = '';
   infoMessage = '';
+  nameError!: string;
 
   constructor(private api: ApiService) { }
 
@@ -53,8 +54,10 @@ export class AddProductsComponent implements OnInit {
   checkError(error: string): void {
     if (error == "Invalid categoryId")
       this.errorMessage = "Błędne id kategorii"
-    if (error == "Product name is taken")
-      this.errorMessage = "Nazwa prodktu jest zajęta";
+    if (error == "Product name is taken"){
+      this.nameError = "Nazwa produktu jest zajęta";
+      this.addProductForm.get('name')!.setErrors({ valid: false });
+    }
   }
 
   getAllCategories(): void {
