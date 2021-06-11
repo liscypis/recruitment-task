@@ -51,6 +51,13 @@ public class ProductController {
         return ResponseEntity.ok(productService.getAvailableProducts());
     }
 
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping("/searchProducts/{name}")
+    public ResponseEntity<?> searchProducts(@PathVariable String name) {
+        return ResponseEntity.ok(productService.searchProduct(name));
+    }
+
+
     @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/product/{id}")
     public ResponseEntity<?> deleteProduct(@PathVariable String id) {

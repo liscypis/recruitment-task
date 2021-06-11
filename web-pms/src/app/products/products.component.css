@@ -12,6 +12,14 @@ mat-card {
     margin: 2em auto;
     text-align: center;
   }
+  .content{
+    position: relative;
+    height: 75px;
+  }
+  .searchForm {
+    position: absolute;
+    right: 10px;
+  }
 
   .mat-column-productName {
     flex: 0 0 100px !important;

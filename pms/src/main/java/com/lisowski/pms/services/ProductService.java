@@ -13,4 +13,5 @@ public interface ProductService {
     ProductResponseDTO getProduct(String productId);
     List<ProductResponseDTO> getProducts();
     List<ProductResponseDTO> getAvailableProducts();
+    List<ProductResponseDTO> searchProduct(String name);
 }

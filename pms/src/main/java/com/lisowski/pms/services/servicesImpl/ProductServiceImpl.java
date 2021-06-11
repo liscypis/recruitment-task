@@ -93,4 +93,11 @@ public class ProductServiceImpl implements ProductService {
                 .map(product -> modelMapper.map(product, ProductResponseDTO.class))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public List<ProductResponseDTO> searchProduct(String name) {
+        return productRepository.findByProductNameIsContainingIgnoreCaseAndAvailable(name, true).stream()
+                .map(product -> modelMapper.map(product,ProductResponseDTO.class))
+                .collect(Collectors.toList());
+    }
 }

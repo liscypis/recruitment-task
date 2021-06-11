@@ -46,6 +46,9 @@ export class ApiService {
   getProducts() :Observable<any> {
     return this.http.get(API_URL + 'products');
   }
+  searchAvailableProducts(name: string):Observable<any> {
+    return this.http.get(API_URL + 'searchProducts/'+ name)
+  }
 
   getCategories() :Observable<any> {
     return this.http.get(API_URL + 'categories');

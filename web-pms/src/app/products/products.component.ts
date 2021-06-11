@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProductDetails } from '../models/ProductDetails';
@@ -16,10 +17,17 @@ export class ProductsComponent implements OnInit {
 
   @ViewChild(MatSort) sort!: MatSort;
 
+  searchForm = new FormGroup({
+    name: new FormControl(),
+  });
 
   constructor(private api: ApiService) { }
 
   ngOnInit(): void {
+    this.getAllProduct();
+  }
+
+  getAllProduct(): void {
     this.api.getAvailableProducts().subscribe(data => {
       this.dataSource = new MatTableDataSource(data)
       console.log(this.dataSource);
@@ -30,5 +38,17 @@ export class ProductsComponent implements OnInit {
       }
     )
   }
+
+  searchProduct(): void {
+    if (this.searchForm.value.name == '') {
+      this.getAllProduct();
+    } else {
+      this.api.searchAvailableProducts(this.searchForm.value.name).subscribe(data => {
+        this.dataSource = new MatTableDataSource(data);
+        console.log(data);
+      })
+    }
+  }
+
 
 }
