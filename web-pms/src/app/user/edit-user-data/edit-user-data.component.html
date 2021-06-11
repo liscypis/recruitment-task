@@ -11,24 +11,35 @@
                             <mat-form-field appearance="outline">
                                 <mat-label>Login</mat-label>
                                 <input matInput placeholder="Login" formControlName="username">
+                                <mat-error *ngIf="usernameError">
+                                    {{usernameError}}
+                                  </mat-error>
                             </mat-form-field>
                             <mat-form-field appearance="outline">
                                 <mat-label>Email</mat-label>
                                 <input matInput placeholder="Email" formControlName="email">
+                                <mat-error *ngIf="emailError">
+                                    {{emailError}}
+                                  </mat-error>
                             </mat-form-field>
                             <mat-form-field appearance="outline">
                                 <mat-label>Numer telefonu</mat-label>
                                 <input matInput placeholder="Numer telefonu" formControlName="phoneNumber">
+                                <mat-error *ngIf="numberError">
+                                    {{numberError}}
+                                  </mat-error>
                             </mat-form-field>
                             <mat-form-field appearance="outline">
                                 <mat-label>Obecne hasło</mat-label>
                                 <input matInput placeholder="Obecne hasło" formControlName="password" type="password">
+                                <mat-error *ngIf="passError">
+                                    {{passError}}
+                                  </mat-error>
                             </mat-form-field>
                             
                             <button type="submit" mat-raised-button color="primary"
                                 [disabled]="!updateForm.valid ">Zapisz</button>
                         </form>
-                        <a *ngIf="updateMessage" class="alert-danger"> {{updateMessage}} </a>
                         <a *ngIf="successUser" class="alert"> {{successUser}} </a>
                     </section>
                 </div>
@@ -45,15 +56,17 @@
                             <mat-form-field appearance="outline">
                                 <mat-label>Obecne hasło</mat-label>
                                 <input matInput placeholder="Obecne hasło" formControlName="pass" type="password">
+                                <mat-error *ngIf="editPassError">
+                                    {{editPassError}}
+                                  </mat-error>
                             </mat-form-field>
                             <mat-form-field appearance="outline">
                                 <mat-label>Nowe hasło</mat-label>
-                                <input matInput placeholder="Obecne hasło" formControlName="pass2" type="password">
+                                <input matInput placeholder="Nowe hasło" formControlName="pass2" type="password">
                             </mat-form-field>
                             <button type="submit" mat-raised-button color="primary"
                                 [disabled]="!updatePassForm.valid ">Zapisz</button>
                         </form>
-                        <a *ngIf="editPassMessage" class="alert-danger"> {{editPassMessage}} </a>
                         <a *ngIf="successPassword" class="alert"> {{successPassword}} </a>
                     </section>
                 </div>
