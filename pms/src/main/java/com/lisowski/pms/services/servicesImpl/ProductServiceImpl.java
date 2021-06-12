@@ -30,6 +30,7 @@ public class ProductServiceImpl implements ProductService {
                 HttpStatus.BAD_REQUEST, "Invalid categoryId"));
 
         Product product = modelMapper.map(requestDTO, Product.class);
+        System.out.println(product);
         if (productRepository.findByProductName(product.getProductName()).isPresent())
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, "Product name is taken");
