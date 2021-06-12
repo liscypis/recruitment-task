@@ -1,0 +1,44 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Wiadomości</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+        <cdk-virtual-scroll-viewport itemSize="50" class="example-viewport">
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                <ng-container matColumnDef="login">
+                    <mat-header-cell *matHeaderCellDef> Od </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.user.username}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="email">
+                    <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.user.email}} </mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="subject">
+                    <mat-header-cell *matHeaderCellDef> Temat </mat-header-cell>
+                    <mat-cell *matCellDef="let element"> {{element.subject}} </mat-cell>
+                </ng-container>
+
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="getRecord(row)">
+                </mat-row>
+            </table>
+        </cdk-virtual-scroll-viewport>
+
+        <mat-card *ngIf="selected" class="example-card">
+            <mat-card-header>
+                <mat-card-title>TEMAT: {{subject}}</mat-card-title>
+                <mat-card-subtitle>{{email}}</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <p style="word-wrap: break-word;">
+                    {{message}}
+                </p>
+            </mat-card-content>
+        </mat-card>
+    </mat-card-content>
+</mat-card>

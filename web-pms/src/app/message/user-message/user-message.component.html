@@ -1,0 +1,19 @@
+<mat-card class="example-card">
+    <mat-card-content>
+        <h2>Nowa wiadomość</h2>
+        <form [formGroup]="messageForm" (ngSubmit)="sendMessage()" #formDirective="ngForm" >
+            <mat-form-field appearance="outline">
+                <mat-label>Temat</mat-label>
+                <input matInput placeholder="Temat" formControlName="subject">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Wiadomość</mat-label>
+                <textarea  matInput placeholder="Wiadomość" formControlName="message" ></textarea>
+            </mat-form-field>
+            
+            <button type="submit" mat-raised-button color="primary"
+                [disabled]="!messageForm.valid ">WYŚLIJ</button>
+        </form>
+          <a *ngIf="infoMessage" class="alert"> {{infoMessage}} </a>
+    </mat-card-content>
+  </mat-card>

@@ -30,6 +30,8 @@ import {ScrollingModule} from '@angular/cdk/scrolling';
 import { MatSortModule } from '@angular/material/sort';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSelectModule} from '@angular/material/select';
+import { UserMessageComponent } from './message/user-message/user-message.component';
+import { AdminMessageComponent } from './message/admin-message/admin-message.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import {MatSelectModule} from '@angular/material/select';
     AddCategoryComponent,
     EditCategoryComponent,
     EditUserDataComponent,
-    EditUsersDataComponent
+    EditUsersDataComponent,
+    UserMessageComponent,
+    AdminMessageComponent
   ],
   imports: [
     BrowserModule,

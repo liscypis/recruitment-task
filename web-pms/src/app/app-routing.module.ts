@@ -4,6 +4,8 @@ import { AddCategoryComponent } from './category/add-category/add-category.compo
 import { EditCategoryComponent } from './category/edit-category/edit-category.component';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
+import { AdminMessageComponent } from './message/admin-message/admin-message.component';
+import { UserMessageComponent } from './message/user-message/user-message.component';
 import { AddProductsComponent } from './products/add-products/add-products.component';
 import { EditProductsComponent } from './products/edit-products/edit-products.component';
 import { ProductsComponent } from './products/products.component';
@@ -68,6 +70,22 @@ const routes: Routes = [
   {
     path: 'editUsers', 
     component: EditUsersDataComponent, 
+    canActivate: [RoleGuardService],
+    data: {
+      expectedRole: 'ROLE_ADMIN'
+    }
+  },
+  {
+    path: 'newMessage', 
+    component: UserMessageComponent, 
+    canActivate: [RoleGuardService],
+    data: {
+      expectedRole: 'ROLE_USER'
+    }
+  },
+  {
+    path: 'readMessages', 
+    component: AdminMessageComponent, 
     canActivate: [RoleGuardService],
     data: {
       expectedRole: 'ROLE_ADMIN'

@@ -2,6 +2,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Category } from '../models/Category';
+import { MessageRequest } from '../models/MessageRequest';
 import { ProductDetails } from '../models/ProductDetails';
 import { UserData } from '../models/UserData';
 import { UserPasswordRequest } from '../models/UserPasswordRequest';
@@ -77,6 +78,12 @@ export class ApiService {
   }
   getUsers():Observable<any> {
     return this.http.get(API_URL + 'users');
+  }
+  getMessages():Observable<any> {
+    return this.http.get(API_URL + 'messages');
+  }
+  sendMessage(message:MessageRequest):Observable<any> {
+    return this.http.post(API_URL + 'message', message);
   }
 
 }
