@@ -18,7 +18,10 @@ export class RegisterComponent implements OnInit {
     email: new FormControl('', [Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"), Validators.minLength(7), Validators.required]),
     phoneNumber: new FormControl('', [Validators.pattern("[0-9]+"), Validators.minLength(9), Validators.maxLength(9), Validators.required]),
   });
-  errorMessage: string = '';
+  nameError: string = '';
+  passwordError: string = '';
+  emailError: string = '';
+  phoneError: string = '';
 
   constructor(private authService: AuthService,
     private router: Router) { }
@@ -29,7 +32,6 @@ export class RegisterComponent implements OnInit {
   }
 
   registerUser(): void {
-    this.errorMessage = '';
     if (this.checkPassword()) {
       let userData = new UserData();
       userData.email = this.registerForm.value.email;
@@ -51,7 +53,7 @@ export class RegisterComponent implements OnInit {
 
   checkPassword(): boolean {
     if (this.registerForm.value.password != this.registerForm.value.password2) {
-      this.errorMessage = "Hasła nie są takie same";
+      this.passwordError = "Hasła nie są takie same";
       this.registerForm.controls.password.setErrors({ 'error': true });
       this.registerForm.controls.password2.setErrors({ 'error': true });
       return false;
@@ -60,11 +62,17 @@ export class RegisterComponent implements OnInit {
   }
 
   checkError(msg: string): void {
-    if (msg == "The username is already in use.")
-      this.errorMessage = "Login jest zajęty";
-    if (msg == "The email is already in use.")
-      this.errorMessage = "Email jest zajęty";
-    if (msg == "The phone number is already in use.")
-      this.errorMessage = "Numer telefonu jest zajęty";
+    if (msg == "The username is already in use."){
+      this.nameError = "Login jest zajęty"
+      this.registerForm.get('username')!.setErrors({ valid: false });
+    }
+    if (msg == "The email is already in use.") {
+      this.emailError = "Email jest zajęty"
+      this.registerForm.get('email')!.setErrors({ valid: false });
+    }
+    if (msg == "The phone number is already in use."){
+      this.phoneError = "Numer telefonu jest zajęty"
+      this.registerForm.get('phoneNumber')!.setErrors({ valid: false });
+    }
   }
 }

@@ -14,7 +14,7 @@ export class AddCategoryComponent implements OnInit {
   categoryForm = new FormGroup({
     categoryName: new FormControl('', [Validators.minLength(3), Validators.required]),
   });
-  errorMessage: string = '';
+  nameError: string = '';
   infoMessage: string = '';
 
   constructor(private api: ApiService) { }
@@ -24,7 +24,6 @@ export class AddCategoryComponent implements OnInit {
   }
 
   addCategory():void {
-    this.errorMessage = '';
     this.infoMessage = '';
     const category = new Category();
     category.name = this.categoryForm.value.categoryName;
@@ -34,7 +33,8 @@ export class AddCategoryComponent implements OnInit {
     err => {
       console.log(err);
       if(err.error.message == "The name is already in use.")
-      this.errorMessage = "Nazwa jest zajęta";
+      this.nameError = "Nazwa jest zajęta";
+      this.categoryForm.get('categoryName')!.setErrors({ valid: false });
      }
     );
   }

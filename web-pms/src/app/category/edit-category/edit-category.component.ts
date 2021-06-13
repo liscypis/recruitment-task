@@ -19,7 +19,7 @@ export class EditCategoryComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'edit'];
   dataSource!: MatTableDataSource<Category>;
 
-  errorMessage: string = '';
+  nameError: string = '';
   infoMessage: string = '';
   selectedCategoryID!: string;
 
@@ -48,7 +48,8 @@ export class EditCategoryComponent implements OnInit {
       err => {
         console.log(err);
         if (err.error.message == "The name is already in use.")
-          this.errorMessage = "Nazwa jest zajęta";
+          this.nameError = "Nazwa jest zajęta";
+          this.updateCategoryForm.get('name')!.setErrors({ valid: false });
       })
   }
   onDeleteRowClicked(row: Category): void {

@@ -45,6 +45,7 @@ export class ProductsComponent implements OnInit {
     } else {
       this.api.searchAvailableProducts(this.searchForm.value.name).subscribe(data => {
         this.dataSource = new MatTableDataSource(data);
+        this.dataSource.sort = this.sort;
         console.log(data);
       })
     }

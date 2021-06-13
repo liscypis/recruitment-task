@@ -45,12 +45,14 @@
                 <mat-form-field appearance="outline">
                     <mat-label>Nazwa kategorii</mat-label>
                     <input matInput placeholder="Nazwa kategorii" formControlName="name">
+                    <mat-error *ngIf="nameError">
+                        {{nameError}}
+                      </mat-error>
                 </mat-form-field>
 
                 <button type="submit" mat-raised-button color="primary"
                     [disabled]="!updateCategoryForm.valid">Zapisz</button>
             </form>
-            <a *ngIf="errorMessage" class="alert-danger"> {{errorMessage}} </a>
         </div>
     </mat-card-content>
 
